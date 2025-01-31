@@ -42,6 +42,11 @@
     button:hover {
       background-color: #45a049;
     }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -57,8 +62,11 @@
       <input type="number" id="episodes" placeholder="Number of Episodes" required />
       <textarea id="description" placeholder="Description" required></textarea>
       <input type="date" id="release_date" required />
+      <input type="url" id="poster_url" placeholder="Poster Image URL" />
       <button type="submit">Save Anime</button>
     </form>
+
+    <img id="animePoster" src="" alt="Anime Poster" style="display:none;">
 
     <!-- Save Watch Progress -->
     <h2>Save Watch Progress</h2>
@@ -94,6 +102,7 @@
         episodes: document.getElementById('episodes').value,
         description: document.getElementById('description').value,
         release_date: document.getElementById('release_date').value,
+        poster_url: document.getElementById('poster_url').value, // Add poster image URL
       };
 
       try {
@@ -105,6 +114,14 @@
 
         const result = await response.json();
         alert(result.message);
+
+        // Show the poster if URL is provided
+        if (animeData.poster_url) {
+          const posterElement = document.getElementById('animePoster');
+          posterElement.src = animeData.poster_url;
+          posterElement.style.display = 'block';
+        }
+
         if (response.ok) {
           document.getElementById('animeForm').reset();
         }
@@ -179,5 +196,4 @@
     });
   </script>
 </body>
-  </html>
-  
+</html>
