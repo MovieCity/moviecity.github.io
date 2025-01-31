@@ -1,94 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Streaming Server</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    input, textarea, button {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Anime Streaming Data</h1>
 
-    <meta
-      name="description"
-      content="AnimeZia is a Free anime streaming website which you can watch English Subbed and Dubbed Anime online. WATCH NOW!. Hianime, 9animetv, aniwatchtv"
-    />
-    <meta
-      name="keywords"
-      content="AnimeZia, hianime to, aniwatch, zorox, zoro anime, zoro to, zoroxtv, watch anime online free, free watch anime, anime online to watch"
-    />
-    <meta name="author" content="AnimeZia Team" />
-    <meta name="robots" content="index, follow" />
-    <meta name="rating" content="General" />
-    <meta name="language" content="English" />
+    <!-- Save Anime Data -->
+    <h2>Save Anime Data</h2>
+    <form id="animeForm">
+      <input type="text" id="anime_id" placeholder="Anime ID" required />
+      <input type="text" id="title" placeholder="Title" required />
+      <input type="text" id="genre" placeholder="Genre" required />
+      <input type="number" id="episodes" placeholder="Number of Episodes" required />
+      <textarea id="description" placeholder="Description" required></textarea>
+      <input type="date" id="release_date" required />
+      <button type="submit">Save Anime</button>
+    </form>
 
-    <meta
-      property="og:title"
-      content="AnimeZia | Watch Free Anime,  Online Anime Streaming  - AnimeZia"
-    />
-    <meta
-      property="og:description"
-      content="AnimeZia to is a free no ads anime site to watch free anime. Online anime streaming at AnimeZia with DUB, SUB in HD. Hianime, 9animetv, Zoro, s3taku,AnimeZia."
-    />
-    <meta property="og:image" content="https://i.postimg.cc/pVqqMKkR/2IAVHlI.webp" />
-    <meta property="og:url" content="https://AnimeZia.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="AnimeZia" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="AnimeZia | Free Anime Streaming Platform"
-    />
-    <meta
-      name="twitter:description"
-      content="Stream free English-subbed and dubbed anime online with no ads. Enjoy hassle-free viewing and daily updates on AnimeZia!"
-    />
-    <meta name="twitter:image" content="https://i.postimg.cc/pVqqMKkR/2IAVHlI.webp" />
-    <meta name="twitter:site" content="@AnimeZia" />
-    <title>AnimeZia | Free Anime Streaming Platform</title>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": "AnimeZia - Watch Anime Free",
-        "description": "AnimeZia offers free streaming of English-subbed and dubbed anime series and movies. No account needed and no ads!",
-        "thumbnailUrl": "https://i.postimg.cc/pVqqMKkR/2IAVHlI.webp",
-        "uploadDate": "2024-11-08",
-        "contentUrl": "https://AnimeZia.com",
-        "duration": "PT30M",
-        "interactionStatistic": {
-          "@type": "InteractionCounter",
-          "interactionType": { "@type": "WatchAction" },
-          "userInteractionCount": 50000
-        },
-        "author": {
-          "@type": "Individual",
-          "name": "AnimeZia",
-          "url": "https://Animezia.com"
-        },
-        "publisher": {
-          "@type": "Individual",
-          "name": "AnimeZia",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://raw.githubusercontent.com/warlordsnet/cdnzia/refs/heads/main/images/logo.webp"
-          }
-        },
-        "potentialAction": {
-          "@type": "WatchAction",
-          "target": "https://AnimeZia.com"
+    <!-- Save Watch Progress -->
+    <h2>Save Watch Progress</h2>
+    <form id="watchProgressForm">
+      <input type="text" id="watch_anime_id" placeholder="Anime ID" required />
+      <input type="text" id="user_id" placeholder="User ID" required />
+      <input type="number" id="watch_progress" placeholder="Watch Progress (in episodes)" required />
+      <input type="datetime-local" id="last_watched" required />
+      <button type="submit">Save Watch Progress</button>
+    </form>
+
+    <!-- Save Streaming Links -->
+    <h2>Save Streaming Links</h2>
+    <form id="streamingLinksForm">
+      <input type="text" id="streaming_anime_id" placeholder="Anime ID" required />
+      <input type="text" id="platform" placeholder="Platform (e.g., Crunchyroll)" required />
+      <input type="url" id="url" placeholder="Streaming URL" required />
+      <input type="text" id="quality" placeholder="Quality (e.g., HD)" required />
+      <button type="submit">Save Streaming Links</button>
+    </form>
+
+  </div>
+
+  <script>
+    // Save Anime Data
+    document.getElementById('animeForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const animeData = {
+        anime_id: document.getElementById('anime_id').value,
+        title: document.getElementById('title').value,
+        genre: document.getElementById('genre').value,
+        episodes: document.getElementById('episodes').value,
+        description: document.getElementById('description').value,
+        release_date: document.getElementById('release_date').value,
+      };
+
+      try {
+        const response = await fetch('https://anime-data-pauy.onrender.com/save-anime', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(animeData),
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        if (response.ok) {
+          document.getElementById('animeForm').reset();
         }
+      } catch (error) {
+        alert('Error saving anime data.');
+        console.error(error);
       }
-    </script>
+    });
 
-    <link rel="canonical" href="https://AnimeZia.com" />
+    // Save Watch Progress
+    document.getElementById('watchProgressForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <script type="module" crossorigin src="/assets/index-CqIzTkAa.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BBF0w4n7.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+      const watchData = {
+        user_id: document.getElementById('user_id').value,
+        watch_progress: document.getElementById('watch_progress').value,
+        last_watched: document.getElementById('last_watched').value,
+      };
+
+      const animeId = document.getElementById('watch_anime_id').value;
+
+      try {
+        const response = await fetch(`https://anime-data-pauy.onrender.com/save-watch/${animeId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(watchData),
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        if (response.ok) {
+          document.getElementById('watchProgressForm').reset();
+        }
+      } catch (error) {
+        alert('Error saving watch progress.');
+        console.error(error);
+      }
+    });
+
+    // Save Streaming Links
+    document.getElementById('streamingLinksForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const streamingData = {
+        streaming_links: [
+          {
+            platform: document.getElementById('platform').value,
+            url: document.getElementById('url').value,
+            quality: document.getElementById('quality').value,
+          }
+        ]
+      };
+
+      const animeId = document.getElementById('streaming_anime_id').value;
+
+      try {
+        const response = await fetch(`https://anime-data-pauy.onrender.com/save-watch-links/${animeId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(streamingData),
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        if (response.ok) {
+          document.getElementById('streamingLinksForm').reset();
+        }
+      } catch (error) {
+        alert('Error saving streaming links.');
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+  </html>
+  
